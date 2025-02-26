@@ -8,14 +8,11 @@
                 <div class="nav-link-icon"><i data-feather="activity"></i></div>
                 Dashboard
             </a>
-            <a class="nav-link collapsed" href="" aria-expanded="false" aria-controls="collapseDashboards">
-                <div class="nav-link-icon"><i data-feather="activity"></i></div>
-                Records
-            </a>
+
             <div class="sidenav-menu-heading">Custom</div>
-            <a class="nav-link collapsed" href=""  aria-expanded="false" aria-controls="collapsePages">
+            <a class="nav-link collapsed" href="{{ route('category') }}"  aria-expanded="false" aria-controls="collapsePages">
                 <div class="nav-link-icon"><i data-feather="grid"></i></div>
-                Persons
+                Category
             </a>
             <a class="nav-link collapsed" href="" aria-expanded="false" aria-controls="collapseApps">
                 <div class="nav-link-icon"><i data-feather="globe"></i></div>

@@ -13,23 +13,23 @@
         </div>
     </form>
     <!-- Navbar Items-->
-    @if (Route::has('login'))
-        @auth
+    <div class="ml-8">
+        @if (Route::has('login'))
+            @auth
 
-            <form method="POST" class=" " action="{{ route('logout') }}">
-                @csrf
-                <button type="submit" class="btn btn-info" target="_self">
-                    Logout
-                </button>
-            </form>
-        @else
-            <a href="{{ route('login') }}" class="btn btn-primary"
-                target="_self">Login</a>
-            @if (Route::has('register'))
-                <a href="{{ route('register') }}" class="btn"
-                    target="_self">Register</a>
-            @endif
-        @endauth
-    @endif
+                <form method="POST" class=" " action="{{ route('logout') }}">
+                    @csrf
+                    <button type="submit" class="btn btn-info" target="_self">
+                        Logout
+                    </button>
+                </form>
+            @else
+                <a href="{{ route('login') }}" class="btn btn-primary" target="_self">Login</a>
+                @if (Route::has('register'))
+                    <a href="{{ route('register') }}" class="btn" target="_self">Register</a>
+                @endif
+            @endauth
+        @endif
+    </div>
 
 </nav>
