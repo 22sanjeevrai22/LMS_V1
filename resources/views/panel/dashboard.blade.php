@@ -13,7 +13,7 @@
                             <p class="text-gray-700 mb-0">Stepbro Library Management System</p>
                         </div>
                     </div>
-                    <div class="col-xl-4 col-xxl-12 text-center"><img class="img-fluid" style="width: 13rem; height:13rem;" src="{{ asset('assets/img/favicon.png') }}" style="max-width: 26rem" /></div>
+                    <div class="col-xl-4 col-xxl-12 text-center"><img class="img-fluid" style="width: 13rem; height:13rem;" src="{{ asset('panel/assets/img/dashboard-cover.jpg') }}" style="max-width: 26rem" /></div>
                 </div>
             </div>
         </div>
@@ -27,8 +27,8 @@
             <div class="card-body">
                 <div class="d-flex justify-content-between align-items-center">
                     <div class="me-3">
-                        <div class="text-white-75 small">Earnings (Monthly)</div>
-                        <div class="text-lg fw-bold">$40,000</div>
+                        <div class="text-white-75 small">Users</div>
+                        <div class="text-lg fw-bold">{{ $userCount }}</div>
                     </div>
                     <i class="feather-xl text-white-50" data-feather="calendar"></i>
                 </div>
@@ -44,8 +44,8 @@
             <div class="card-body">
                 <div class="d-flex justify-content-between align-items-center">
                     <div class="me-3">
-                        <div class="text-white-75 small">Earnings (Annual)</div>
-                        <div class="text-lg fw-bold">$215,000</div>
+                        <div class="text-white-75 small">Books</div>
+                        <div class="text-lg fw-bold">{{ $bookCount }}</div>
                     </div>
                     <i class="feather-xl text-white-50" data-feather="dollar-sign"></i>
                 </div>
@@ -61,8 +61,8 @@
             <div class="card-body">
                 <div class="d-flex justify-content-between align-items-center">
                     <div class="me-3">
-                        <div class="text-white-75 small">Task Completion</div>
-                        <div class="text-lg fw-bold">24</div>
+                        <div class="text-white-75 small">Categories</div>
+                        <div class="text-lg fw-bold">{{ $categoryCount }}</div>
                     </div>
                     <i class="feather-xl text-white-50" data-feather="check-square"></i>
                 </div>

@@ -4,7 +4,7 @@
             <!-- Sidenav Menu Heading (Core)-->
             <div class="sidenav-menu-heading">Core</div>
             <!-- Sidenav Accordion (Dashboard)-->
-            <a class="nav-link collapsed" href="" aria-expanded="false" aria-controls="collapseDashboards">
+            <a class="nav-link collapsed" href="{{ route('dashboard') }}" aria-expanded="false" aria-controls="collapseDashboards">
                 <div class="nav-link-icon"><i data-feather="activity"></i></div>
                 Dashboard
             </a>
@@ -14,9 +14,9 @@
                 <div class="nav-link-icon"><i data-feather="grid"></i></div>
                 Category
             </a>
-            <a class="nav-link collapsed" href="" aria-expanded="false" aria-controls="collapseApps">
-                <div class="nav-link-icon"><i data-feather="globe"></i></div>
-                Vehicles
+            <a class="nav-link collapsed" href="{{ route('books') }}" aria-expanded="false" aria-controls="collapseApps">
+                <div class="nav-link-icon"><i data-feather="book-open"></i></div>
+               Books
             </a>
             <a class="nav-link collapsed" href=" aria-expanded="false" aria-controls="collapseApps">
                 <div class="nav-link-icon"><i data-feather="globe"></i></div>

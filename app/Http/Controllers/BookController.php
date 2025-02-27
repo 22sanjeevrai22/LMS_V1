@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Book;
 use App\Http\Requests\StoreBookRequest;
 use App\Http\Requests\UpdateBookRequest;
+use App\Models\Category;
 
 class BookController extends Controller
 {
@@ -13,7 +14,8 @@ class BookController extends Controller
      */
     public function index()
     {
-        //
+        $books = Book::all();
+        return view('panel.books.index', compact('books'));
     }
 
     /**
@@ -21,7 +23,8 @@ class BookController extends Controller
      */
     public function create()
     {
-        //
+        $categories = Category::all();
+        return view('panel.books.create', compact('categories'));
     }
 
     /**
@@ -29,7 +32,18 @@ class BookController extends Controller
      */
     public function store(StoreBookRequest $request)
     {
-        //
+        $formData = [
+            'title'=>$request->title,
+            'author_name'=>$request->author_name,
+            'category_id'=> $request->category,
+            'price'=>$request->price,
+            'description'=>$request->description,
+            'quantity'=>$request->quantity,
+        ];
+
+        Book::create($formData);
+
+        return back()->with('success', 'Book Created Successfully');
     }
 
     /**
@@ -45,7 +59,8 @@ class BookController extends Controller
      */
     public function edit(Book $book)
     {
-        //
+        $categories = Category::all();
+        return view('panel.books.edit', compact('book', 'categories'));
     }
 
     /**
@@ -53,7 +68,19 @@ class BookController extends Controller
      */
     public function update(UpdateBookRequest $request, Book $book)
     {
-        //
+        $updatedData = [
+            'title'=>$request->title,
+            'author_name'=>$request->author_name,
+            'category_id'=> $request->category,
+            'price'=>$request->price,
+            'description'=>$request->description,
+            'quantity'=>$request->quantity,
+        ];
+
+        $book = Book::findOrFail($book->id);
+        $book->update($updatedData);
+
+        return back()->with('success', 'Book Updated Successfully');
     }
 
     /**
@@ -61,6 +88,12 @@ class BookController extends Controller
      */
     public function destroy(Book $book)
     {
-        //
+        $book = Book::find($book->id);
+        if ($book) {
+            $book->delete();
+            return back()->with('deleted', 'Book Deleted Successfully');
+        } else {
+            return back()->with('error', 'Book Not Found');
+        }
     }
 }
