@@ -5,25 +5,22 @@ namespace App\Http\Controllers;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Route;
 
 class AdminController extends Controller
 {
-    public function index(){
-        if(Auth::id()){
-            $user_type =Auth::user()->usertype;
+    public function index()
+    {
+        if (Auth::id()) {
+            $user_type = Auth::user()->usertype;
 
-            if($user_type == 'user'){
-
+            if ($user_type == 'user') {
                 return view('website.home');
-
-            }else if($user_type=='admin'){
-
-                return view('panel.dashboard');
-
-            };
-        }else{
+            } elseif ($user_type == 'admin') {
+                return redirect()->route('dashboard');
+            }
+        } else {
             return redirect()->back();
         }
-
     }
 }

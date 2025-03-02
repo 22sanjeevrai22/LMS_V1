@@ -20,6 +20,7 @@ class CategorySeeder extends Seeder
         foreach ($categories as $category) {
             Category::factory()->create([
                 'category' => $category,
+                'description' => fake()->sentence(50),
             ]);
         }
     }

@@ -19,6 +19,7 @@
                             <tr>
                                 <th scope="col">S No.</th>
                                 <th scope="col">Title</th>
+                                <th scope="col">Cover</th>
                                 <th scope="col">Author Name</th>
                                 <th scope="col">Price</th>
                                 <th scope="col">Genre</th>
@@ -27,10 +28,17 @@
                             </tr>
                         </thead>
                         <tbody>
-                            @foreach ($books as $book)
+                            @foreach ($books as $index=>$book)
                                 <tr>
-                                    <th scope="row">{{ $book->id }}</th>
+                                    <th scope="row">{{ $index + 1 }}</th>
                                     <td>{{ $book->title }}</td>
+                                    <td>
+                                        @if($book->getFirstMedia('cover'))
+                                        <img src="{{ $book->getFirstMedia('cover')->getUrl('preview') }}" alt="cover">
+                                        @else
+                                        No Image Found
+                                        @endif
+                                    </td>
                                     <td>{{ $book->author_name }}</td>
                                     <td>{{ $book->price }}</td>
                                     <td>{{ $book->category->category }}</td>

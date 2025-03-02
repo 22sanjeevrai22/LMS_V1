@@ -14,7 +14,7 @@
           >
             <div class="mediz-single-article-head-right">
               <h1 class="mediz-single-article-title">
-                {{$singleblog->title}}
+                {{$category->category}}
               </h1>
               <div class="mediz-blog-info-wrapper">
                 <div
@@ -70,11 +70,11 @@
               >
                 <div class="mediz-single-article clearfix">
                   <div class="mediz-single-article-content">
-                    <h4>{{$singleblog->title}}</h4>
+                    <h4>{{$category->category}}</h4>
                     <!-- /wp:heading -->
                     <!-- wp:paragraph -->
 
-                    {{$singleblog->long_desc}}
+                    {{$category->description}}
 
 
                     <!-- /wp:paragraph -->
@@ -89,42 +89,25 @@
                     >
                       <li class="blocks-gallery-item">
                         <figure>
-                        @if($singleblog->hasMedia('cover'))
+                        {{-- @if($category->hasMedia('cover'))
                           <img
                             class="alignnone wp-image-7309"
-                            src="{{ $singleblog->getFirstMedia('cover')->getUrl()}}"
+                            src="{{ $category->getFirstMedia('cover')->getUrl()}}"
                             alt=""
                             width="1024"
                             height="605"
                             data-id="6030"
                           />
-                          @else
-                          <a href="#"><img src="{{asset('website/upload/p-1.1-400x400.jpg')}}" width="600" height="600"  alt="" /></a>
-                          @endif
+                          @else --}}
+                          <a href="#"><img src="{{asset('website/upload/library.png')}}" width="600" height="600"  alt="" /></a>
+                          {{-- @endif --}}
                         </figure>
                       </li>
                     </ul>
-                    <!-- /wp:gallery -->
-                    <!-- wp:paragraph -->
 
-                    Far far away, behind the word mountains, far from the
-                    countries Vokalia and Consonantia, there live the
-                    blind texts. Separated they live in Bookmarksgrove
-                    right at the coast of the Semantics, a large language
-                    ocean. A small river named Duden flows by their place
-                    and supplies it with the necessary regelialia. It is a
-                    paradisematic country in which roasted parts of
-                    sentences fly into your mouth. Even the all-powerful
-                    Pointing has no control about the blind texts it is an
-                    almost unorthographic life One day however a small
-                    line.
-
-                    <!-- /wp:paragraph -->
                   </div>
                 </div>
-                <!-- mediz-single-article -->
               </article>
-              <!-- post-id -->
             </div>
             <div class="mediz-page-builder-wrap mediz-item-rvpdlr">
               <div class="gdlr-core-page-builder-body"></div>

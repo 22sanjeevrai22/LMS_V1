@@ -8,10 +8,10 @@
     <form action="{{ route('books.update', $book->id) }}" method="POST" enctype="multipart/form-data">
         @csrf
         @method('PUT')
-        <div class="row d-flex justify-content-center">
-            <div class="col-xl-6">
+        <div class="text-center">
+            <div class="row d-flex justify-content-center">
                 <!-- Account details card-->
-                <div class="card mb-4">
+                <div class="card col-xl-6 mx-4">
                     <div class="card-header">Edit Book</div>
 
                     <div class="card-body">
@@ -111,8 +111,29 @@
 
                     </div>
                 </div>
-                <button class="btn btn-primary text-center" type="submit">Update Book</button>
+
+                <div class="card col-xl-4 mx-4">
+                    <div class="card-header">Book Image</div>
+                    <div class="card-body text-center">
+                        <!-- Profile picture image-->
+                        <img class="img-account-profile rounded-circle mb-2"
+                            src="{{ asset('panel/assets/img/demo/user-placeholder.svg') }}" id="preview_image"
+                            alt="Profile Picture" />
+                        <!-- Profile picture help block-->
+                        <div class="small font-italic text-muted mb-4">JPG or PNG no larger than 5 MB</div>
+
+                        <input type="file" name="book_cover" id="book_cover" accept=".jpg, .jpeg, .png"
+                            class="d-none @error('book_cover') is-invalid @enderror">
+                        @error('book_cover')
+                            <span class="text-danger">{{ $message }}</span>
+                        @enderror
+                        <button class="btn btn-info" type="button"
+                            onclick="document.getElementById('book_cover').click();">Upload Image</button>
+                    </div>
+                </div>
+
             </div>
+            <button class="btn btn-primary mt-5" type="submit">Update Book</button>
         </div>
     </form>
     @include('panel.layouts.toast')
@@ -121,14 +142,14 @@
 @section('page-scripts')
     <script>
         document.addEventListener('DOMContentLoaded', function() {
-            // var person_image = document.getElementById('person_image');
-            // person_image.addEventListener('change', function(e) {
-            //     var reader = new FileReader();
-            //     reader.onload = function(event) {
-            //         document.getElementById('preview_image').src = event.target.result;
-            //     }
-            //     reader.readAsDataURL(e.target.files[0]);
-            // });
+            var book_cover = document.getElementById('book_cover');
+            book_cover.addEventListener('change', function(e) {
+                var reader = new FileReader();
+                reader.onload = function(event) {
+                    document.getElementById('preview_image').src = event.target.result;
+                }
+                reader.readAsDataURL(e.target.files[0]);
+            });
 
             function showToast(title, message, type) {
                 var toast = document.getElementById('liveToast');

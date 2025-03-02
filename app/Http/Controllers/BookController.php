@@ -6,6 +6,8 @@ use App\Models\Book;
 use App\Http\Requests\StoreBookRequest;
 use App\Http\Requests\UpdateBookRequest;
 use App\Models\Category;
+use Spatie\MediaLibrary\MediaCollections\Exceptions\FileDoesNotExist;
+use Spatie\MediaLibrary\MediaCollections\Exceptions\FileIsTooBig;
 
 class BookController extends Controller
 {
@@ -41,7 +43,25 @@ class BookController extends Controller
             'quantity'=>$request->quantity,
         ];
 
-        Book::create($formData);
+        if ($request->hasFile('book_cover')) {
+            $book = Book::create($formData);
+            try {
+                // $image = $request->file('book_cover');
+                // $imagePath = $image->store('temp', 'public');
+                // $request->session()->put('temp_book_cover', $imagePath);
+                $book
+                    ->addMediaFromRequest('book_cover')
+                    ->usingName($request->title)
+                    ->toMediaCollection('cover');
+
+                // $request->session()->forget('temp_book_cover');
+            } catch (FileDoesNotExist $e) {
+                return redirect()->back()->with('error', 'File does not exist.');
+            } catch (FileIsTooBig $e) {
+                return redirect()->back()->with('error', 'File is too big.');
+            }
+            return redirect()->back()->with('success', 'Book Created Successfully');
+        }
 
         return back()->with('success', 'Book Created Successfully');
     }
@@ -77,10 +97,29 @@ class BookController extends Controller
             'quantity'=>$request->quantity,
         ];
 
-        $book = Book::findOrFail($book->id);
         $book->update($updatedData);
+        if ($request->hasFile('book_cover')) {
+            try {
+                // $image = $request->file('book_cover');
+                // $imagePath = $image->store('temp', 'public');
+                // $request->session()->put('temp_book_cover', $imagePath);
 
-        return back()->with('success', 'Book Updated Successfully');
+                $book
+                    ->addMediaFromRequest('book_cover')
+                    ->usingName($request->title)
+                    ->toMediaCollection('cover');
+
+                // $request->session()->forget('temp_book_cover');
+            } catch (FileDoesNotExist $e) {
+                return redirect()->back()->with('error', 'File does not exist.');
+            } catch (FileIsTooBig $e) {
+                return redirect()->back()->with('error', 'File is too big.');
+            }
+
+            return redirect()->back()->with('success', 'Book Edited Successfully with Image');
+        }
+
+        return back()->with('success', 'Book Updated Successfully without Image');
     }
 
     /**
