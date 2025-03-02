@@ -30,7 +30,7 @@
                         <tbody>
                             @foreach ($books as $index=>$book)
                                 <tr>
-                                    <th scope="row">{{ $index + 1 }}</th>
+                                    <th scope="row">{{ $books->firstItem() + $index  }}</th>
                                     <td>{{ $book->title }}</td>
                                     <td>
                                         @if($book->getFirstMedia('cover'))
@@ -54,7 +54,8 @@
                                     </td>
                                 </tr>
                             @endforeach
-                    </table>
+                        </table>
+                        {{ $books->links() }}
                 </div>
             </div>
         </div>

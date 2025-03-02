@@ -13,7 +13,7 @@ class CategoryController extends Controller
      */
     public function index($id = null)
     {
-        $categories = Category::all();
+        $categories = Category::paginate(10);
         $category = $id ? Category::find($id) : null; // Fetch category only if ID exists
         return view('panel.category.index', compact('categories', 'category'));
     }
