@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\panel;
 
 use App\Models\Book;
 use App\Http\Requests\StoreBookRequest;
@@ -9,7 +9,7 @@ use App\Models\Category;
 use Spatie\MediaLibrary\MediaCollections\Exceptions\FileDoesNotExist;
 use Spatie\MediaLibrary\MediaCollections\Exceptions\FileIsTooBig;
 
-class BookController extends Controller
+class BookController
 {
     /**
      * Display a listing of the resource.
@@ -35,12 +35,12 @@ class BookController extends Controller
     public function store(StoreBookRequest $request)
     {
         $formData = [
-            'title'=>$request->title,
-            'author_name'=>$request->author_name,
-            'category_id'=> $request->category,
-            'price'=>$request->price,
-            'description'=>$request->description,
-            'quantity'=>$request->quantity,
+            'title' => $request->title,
+            'author_name' => $request->author_name,
+            'category_id' => $request->category,
+            'price' => $request->price,
+            'description' => $request->description,
+            'quantity' => $request->quantity,
         ];
 
         if ($request->hasFile('book_cover')) {
@@ -49,10 +49,7 @@ class BookController extends Controller
                 // $image = $request->file('book_cover');
                 // $imagePath = $image->store('temp', 'public');
                 // $request->session()->put('temp_book_cover', $imagePath);
-                $book
-                    ->addMediaFromRequest('book_cover')
-                    ->usingName($request->title)
-                    ->toMediaCollection('cover');
+                $book->addMediaFromRequest('book_cover')->usingName($request->title)->toMediaCollection('cover');
 
                 // $request->session()->forget('temp_book_cover');
             } catch (FileDoesNotExist $e) {
@@ -89,12 +86,12 @@ class BookController extends Controller
     public function update(UpdateBookRequest $request, Book $book)
     {
         $updatedData = [
-            'title'=>$request->title,
-            'author_name'=>$request->author_name,
-            'category_id'=> $request->category,
-            'price'=>$request->price,
-            'description'=>$request->description,
-            'quantity'=>$request->quantity,
+            'title' => $request->title,
+            'author_name' => $request->author_name,
+            'category_id' => $request->category,
+            'price' => $request->price,
+            'description' => $request->description,
+            'quantity' => $request->quantity,
         ];
 
         $book->update($updatedData);
@@ -104,10 +101,7 @@ class BookController extends Controller
                 // $imagePath = $image->store('temp', 'public');
                 // $request->session()->put('temp_book_cover', $imagePath);
 
-                $book
-                    ->addMediaFromRequest('book_cover')
-                    ->usingName($request->title)
-                    ->toMediaCollection('cover');
+                $book->addMediaFromRequest('book_cover')->usingName($request->title)->toMediaCollection('cover');
 
                 // $request->session()->forget('temp_book_cover');
             } catch (FileDoesNotExist $e) {
@@ -129,8 +123,12 @@ class BookController extends Controller
     {
         $book = Book::find($book->id);
         if ($book) {
-            $book->delete();
-            return back()->with('deleted', 'Book Deleted Successfully');
+            // if ($book->borrows()->exists()) {
+            //     return back()->with('error', 'Cannot delete book while it is borrowed.');
+            // } else {
+                $book->delete();
+                return back()->with('success', 'Book deleted successfully');
+            // }
         } else {
             return back()->with('error', 'Book Not Found');
         }

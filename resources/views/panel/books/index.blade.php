@@ -44,12 +44,12 @@
                                     <td>{{ $book->category->category }}</td>
                                     <td>{{ $book->quantity }}</td>
                                     <td><a href="{{ route('books.edit', $book->id) }}"><button type="button"
-                                                class="btn btn-primary">Edit</button></a>
+                                                class="btn btn-primary btn-sm">Edit</button></a>
                                         <form action="{{ route('books.destroy', $book->id) }}" method="POST"
                                             class="d-inline delete-form">
                                             @csrf
                                             @method('DELETE')
-                                            <button type="button" class="btn btn-danger delete-btn">Delete</button>
+                                            <button type="button" class="btn btn-danger delete-btn btn-sm">Delete</button>
                                         </form>
                                     </td>
                                 </tr>
@@ -61,43 +61,11 @@
         </div>
     </div>
 
-    @include('panel.layouts.toast')
-
 
 @endsection
 @section('page-scripts')
     <script>
         document.addEventListener('DOMContentLoaded', function() {
-
-            function showToast(title, message, type) {
-                var toast = document.getElementById('liveToast');
-                var toastBody = toast.querySelector('.toast-body');
-                var toastHeader = toast.querySelector('.toast-header');
-                var toastHeaderStrong = toastHeader.querySelector('strong');
-
-                toastBody.textContent = message;
-                toastHeaderStrong.textContent = title;
-
-                // Reset the toast header class
-                toastHeader.className = 'toast-header';
-
-                if (type === 'success') {
-                    toastHeader.classList.add('text-bg-success');
-                } else if (type === 'error') {
-                    toastHeader.classList.add('text-bg-warning');
-                }
-
-                var toastElement = new bootstrap.Toast(toast);
-                toastElement.show();
-            }
-
-            @if (session('success'))
-                showToast('Success', '{{ session('success') }}', 'success');
-            @endif
-            @if (session('error'))
-                showToast('Error', '{{ session('error') }}', 'error');
-            @endif
-
 
             document.querySelectorAll('.delete-btn').forEach(button => {
                 button.addEventListener('click', function(e) {

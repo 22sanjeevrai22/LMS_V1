@@ -1,3 +1,22 @@
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js" crossorigin="anonymous"></script>
+
+@if(session('success') || session('error') || session('warning') || session('info'))
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            let message = @json(session('success') ?? session('error') ?? session('warning') ?? session('info'));
+            let toastElement = document.getElementById("sessionToast");
+            let toastBody = document.getElementById("toastMessage");
+
+            // Set toast message
+            toastBody.innerText = message;
+
+            // Show the toast
+            let toast = new bootstrap.Toast(toastElement);
+            toast.show();
+        });
+    </script>
+@endif
+
 <script type='text/javascript' src="{{asset('website/js/jquery/jquery.js')}}"></script>
     <script type='text/javascript' src="{{asset('website/js/jquery/jquery-migrate.min.js')}}"></script>
     <script type='text/javascript' src="{{asset('website/plugins/revslider/public/assets/js/revolution.tools.min.js')}}"></script>
@@ -157,3 +176,6 @@
             document.getElementsByTagName('head')[0].appendChild(htmlDiv.childNodes[0]);
         }
     </script>
+
+
+

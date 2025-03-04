@@ -1,6 +1,7 @@
 <?php
 
 namespace App\Models;
+use App\Models\Borrow;
 
 // use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
@@ -30,6 +31,11 @@ class User extends Authenticatable
         'email',
         'password',
     ];
+
+    public function borrows()
+    {
+        return $this->hasMany(Borrow::class);
+    }
 
     /**
      * The attributes that should be hidden for serialization.

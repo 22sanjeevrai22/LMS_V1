@@ -10,10 +10,10 @@
        @include('panel.layouts.styles')
        <title>LMS_V1_Dashboard</title>
 
-       <script data-search-pseudo-elements="" defer="" src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.3.0/js/all.min.js" crossorigin="anonymous"></script>
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/feather-icons/4.29.0/feather.min.js" crossorigin="anonymous"></script>
+      
     </head>
     <body class="nav-fixed">
+        @include('panel.layouts.toast')
         @include('panel.layouts.header')
         <div id="layoutSidenav">
             <div id="layoutSidenav_nav">

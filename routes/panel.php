@@ -1,10 +1,10 @@
 <?php
 
-use App\Http\Controllers\BookController;
-use App\Http\Controllers\CategoryController;
-use App\Http\Controllers\DashboardController;
+use App\Http\Controllers\panel\BookController;
+use App\Http\Controllers\panel\BorrowController;
+use App\Http\Controllers\panel\CategoryController;
+use App\Http\Controllers\panel\DashboardController;
 use Illuminate\Support\Facades\Route;
-use SebastianBergmann\CodeCoverage\Report\Html\Dashboard;
 
 Route::get('/dashboard', function () {
     return redirect()->route('dashboard');
@@ -30,6 +30,13 @@ Route::prefix('admin')->middleware(['auth'])->group(function(){
     Route::get('/books/{book}/edit', [BookController::class, 'edit'])->name('books.edit');
     Route::put('/books/{book}/update', [BookController::class, 'update'])->name('books.update');
     Route::delete('/books/{book}', [BookController::class, 'destroy'])->name('books.destroy');
+
+    Route::get('/borrow', [BorrowController::class, 'index'])->name('panel.borrow');
+    Route::get('/borrow/{borrow}/approve', [BorrowController::class, 'approve'])->name('borrow.approve');
+    Route::get('/borrow/{borrow}/return', [BorrowController::class, 'return'])->name('borrow.return');
+    Route::get('/borrow/{borrow}/reject', [BorrowController::class, 'reject'])->name('borrow.reject');
+    Route::delete('/borrow/{borrow}', [BorrowController::class, 'destroy'])->name('borrow.destroy');
+
 
 
 });

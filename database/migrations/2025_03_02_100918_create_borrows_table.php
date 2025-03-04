@@ -21,7 +21,7 @@ return new class extends Migration
                 $table->foreignIdFor(Book::class)->constrained()
                 ->onUpdate('cascade')
                 ->onDelete('cascade');
-                $table->string('status')->default('rejected');
+                $table->enum('status', ['pending', 'approved', 'rejected', 'returned'])->default('pending');
             $table->timestamps();
         });
     }

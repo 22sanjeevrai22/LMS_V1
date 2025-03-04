@@ -12,6 +12,8 @@
 </head>
 <body class="home page-template-default page page-id-7684 theme-mediz gdlr-core-body woocommerce-no-js mediz-body mediz-body-front mediz-full  mediz-with-sticky-navigation  mediz-sticky-navigation-no-logo  mediz-blockquote-style-1 gdlr-core-link-to-lightbox" data-home-url="index.html">
 
+    @include('website.layouts.toast')
+
     @include('website.layouts.mobileview')
     @include('website.layouts.header')
     @include('website.layouts.navbar')

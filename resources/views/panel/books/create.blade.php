@@ -132,7 +132,6 @@
             <button class="btn btn-primary mt-5" type="submit">Add Book</button>
         </div>
     </form>
-    @include('panel.layouts.toast')
 
 @endsection
 @section('page-scripts')
@@ -146,37 +145,6 @@
                 }
                 reader.readAsDataURL(e.target.files[0]);
             });
-
-            function showToast(title, message, type) {
-                var toast = document.getElementById('liveToast');
-                var toastBody = toast.querySelector('.toast-body');
-                var toastHeader = toast.querySelector('.toast-header');
-                var toastHeaderStrong = toastHeader.querySelector('strong');
-
-                toastBody.textContent = message;
-                toastHeaderStrong.textContent = title;
-
-                // Reset the toast header class
-                toastHeader.className = 'toast-header';
-
-                if (type === 'success') {
-                    toastHeader.classList.add('text-bg-success');
-                } else if (type === 'error') {
-                    toastHeader.classList.add('text-bg-warning');
-                }
-
-                var toastElement = new bootstrap.Toast(toast);
-                toastElement.show();
-            }
-
-            @if (session('success'))
-                showToast('Success', '{{ session('success') }}', 'success');
-            @endif
-            @if (session('error'))
-                showToast('Error', '{{ session('error') }}', 'error');
-            @endif
-
-
         });
     </script>
 @endsection

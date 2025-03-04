@@ -18,9 +18,9 @@
                 <div class="nav-link-icon"><i data-feather="book-open"></i></div>
                Books
             </a>
-            <a class="nav-link collapsed" href=" aria-expanded="false" aria-controls="collapseApps">
+            <a class="nav-link collapsed" href="{{ route('panel.borrow') }} " aria-expanded="false" aria-controls="collapseApps">
                 <div class="nav-link-icon"><i data-feather="globe"></i></div>
-                Vehicle Types
+                Borrow
             </a>
             <a class="nav-link collapsed" href="" aria-expanded="false" aria-controls="collapseFlows">
                 <div class="nav-link-icon"><i data-feather="repeat"></i></div>

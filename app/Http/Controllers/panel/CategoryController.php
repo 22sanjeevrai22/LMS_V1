@@ -1,12 +1,13 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\panel;
 
 use App\Models\Category;
 use App\Http\Requests\StoreCategoryRequest;
 use App\Http\Requests\UpdateCategoryRequest;
+use Illuminate\Support\Facades\Redirect;
 
-class CategoryController extends Controller
+class CategoryController
 {
     /**
      * Display a listing of the resource.
@@ -32,7 +33,6 @@ class CategoryController extends Controller
             'category' => $request->category,
         ];
 
-        Category::create($formData);
         return back()->with('success', 'Category Created Successfully');
     }
 
@@ -74,7 +74,7 @@ class CategoryController extends Controller
         $category = Category::find($category->id);
         if ($category) {
             $category->delete();
-            return back()->with('deleted', 'Category Deleted Successfully');
+            return back()->with('success', 'Category Deleted Successfully');
         } else {
             return back()->with('error', 'Category Not Found');
         }

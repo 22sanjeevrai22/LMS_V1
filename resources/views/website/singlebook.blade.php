@@ -82,11 +82,11 @@
                                                         Total: {{ $book->quantity}}
                                                     </div>
                                                 </div>
-                                                <span
-                                                    class="product-price flex justify-center items-center mt-3 mx-auto bg-orange-500 my-2 h-10 text-white text-xl font-light rounded-lg shadow-lg hover:bg-orange-700 cursor-pointer">
+                                                <a href="{{ route('website.borrow', $book->id) }}"
+                                                    class="flex justify-center items-center mt-3 mx-auto bg-orange-500 my-2 h-10 text-white text-xl font-light rounded-lg shadow-lg hover:bg-orange-700 cursor-pointer">
                                                    Borrow
                                                     <IoCart class="ml-3 text-2xl" />
-                                                </span>
+                                                </a>
                                             </div>
                                         </div>
 
@@ -303,3 +303,4 @@
         </div>
     </div>
 @endsection
+
